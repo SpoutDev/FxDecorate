@@ -1,4 +1,3 @@
 FxDecorate
 ==========
-
-Helps you with doing resizing and moving undecorated JavaFX stages
+Assists with resizing and moving undecorated JavaFX stages.

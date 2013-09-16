@@ -1,7 +1,8 @@
 /*
  * This file is part of FxDecorate.
  *
- * Copyright (c) 2013 narrowtux <http://www.narrowtux.com/>
+ * Copyright (c) 2013 Moritz Schmale <http://www.narrowtux.com/>
+ * Modifications copyright (c) 2013 Spout LLC <http://www.spout.org/>
  * FxDecorate is licensed under the GNU Lesser General Public License.
  *
  * FxDecorate is free software: you can redistribute it and/or modify
@@ -17,7 +18,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.narrowtux.fxdecorate;
 
 public enum OperatingSystem {

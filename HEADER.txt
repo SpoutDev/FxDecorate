@@ -1,6 +1,7 @@
 This file is part of ${name}.
 
-Copyright (c) ${inceptionYear} ${organization} <${url}/>
+Copyright (c) ${inceptionYear} Moritz Schmale <http://www.narrowtux.com/>
+Modifications copyright (c) ${inceptionYear} ${organization} <${url}/>
 ${name} is licensed under the GNU Lesser General Public License.
 
 ${name} is free software: you can redistribute it and/or modify

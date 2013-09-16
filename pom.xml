@@ -1,31 +1,131 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.narrowtux</groupId>
-	<artifactId>fxdecorate</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- Project information -->
 	<name>FxDecorate</name>
+	<groupId>org.spout</groupId>
+	<artifactId>fxdecorate</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<inceptionYear>2013</inceptionYear>
+	<url>https://github.com/SpoutDev/FxDecorate</url>
+	<description>Assists with resizing and moving undecorated JavaFX stages.</description>
+
+	<!-- Parent information -->
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<!-- Build properties -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<buildNumber>0</buildNumber>
+		<ciSystem>unknown</ciSystem>
+		<commit>unknown</commit>
+	</properties>
+
+	<!-- License information -->
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License Version 3</name>
+			<url>http://gnu.org/licenses/lgpl.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<!-- Organization information -->
 	<organization>
-		<name>narrowtux</name>
-		<url>http://www.narrowtux.com</url>
+		<name>Spout LLC</name>
+		<url>http://www.spout.org</url>
 	</organization>
-	<url>http://narrowtux.com</url>
-	<description>Helps you with doing resizing and moving undecorated JavaFX stages</description>
+
+	<!-- Project developers -->
+	<developers>
+		<developer>
+			<id>narrowtux</id>
+			<name>Moritz Schmale</name>
+			<email>narrow.m@gmail.com</email>
+		</developer>
+		<developer>
+			<id>Wulfspider</id>
+			<name>Luke Spragg</name>
+			<email>the@wulf.im</email>
+		</developer>
+	</developers>
+
+	<!-- Source code access -->
+	<scm>
+		<connection>scm:git:git://github.com/SpoutDev/FxDecorate.git</connection>
+		<developerConnection>scm:git:git@github.com:SpoutDev/FxDecorate.git</developerConnection>
+		<url>https://github.com/SpoutDev/FxDecorate</url>
+	</scm>
+
+	<!-- Continuous integration -->
+	<ciManagement>
+		<system>travis</system>
+		<url>https://travis-ci.org/SpoutDev/FxDecorate</url>
+	</ciManagement>
+
+	<!-- Issue management -->
+	<issueManagement>
+		<system>jira</system>
+		<url>http://issues.spout.org/browse/FXDECO</url>
+	</issueManagement>
+
+	<!-- Dependency repositories -->
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-releases</id>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!-- Build plugin repositories -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-nexus-releases</id>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- Project dependencies -->
 	<dependencies>
+		<!-- Provided by system -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>javafx</artifactId>
-			<version>2.0</version>
-			<systemPath>${fx.home}</systemPath>
+			<version>2.2</version>
+			<systemPath>${java.home}/lib/jfxrt.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
 	</dependencies>
+
+	<!-- Build configuration -->
 	<build>
+		<defaultGoal>clean install</defaultGoal>
 		<sourceDirectory>src/main/java</sourceDirectory>
+
+		<!-- Build plugins -->
 		<plugins>
-		<!-- license header plugin -->
+		<!-- License header plugin -->
 			<plugin>
 				<groupId>com.mycila.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>
@@ -42,7 +142,7 @@
 							<quiet>true</quiet>
 							<encoding>UTF-8</encoding>
 							<strictCheck>true</strictCheck>
-							<header>${project.basedir}/HEADER.txt</header>
+							<header>HEADER.txt</header>
 							<mapping>
 								<java>SLASHSTAR_STYLE</java>
 							</mapping>
@@ -62,13 +162,20 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- compiler plugin -->
+			<!-- Source compiler plugin -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.1</version>
 				<configuration>
-					<target>1.7</target>
 					<source>1.7</source>
+					<target>1.7</target>
+					<compilerArguments>
+						<O>-Xlint:all</O>
+						<O>-Xlint:-path</O>
+					</compilerArguments>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
 		</plugins>
